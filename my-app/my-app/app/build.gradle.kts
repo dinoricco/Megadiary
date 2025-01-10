@@ -44,4 +44,25 @@ java {
 application {
     // Define the main class for the application.
     mainClass = "org.example.AppKt"
+}fun main() {
+    println("Добро пожаловать в ваше Kotlin-приложение!")
+
+    println("Введите ваше имя: ")
+    val name = readLine() ?: "Гость"
+
+    println("Привет, $name! Выберите действие:")
+    println("1. Узнать текущую дату и время")
+    println("2. Завершить работу")
+
+    when (readLine()) {
+        "1" -> {
+            val currentDateTime = java.time.LocalDateTime.now()
+            println("Текущая дата и время: $currentDateTime")
+        }
+        "2" -> println("До свидания, $name!")
+        else -> println("Неверный выбор. Попробуйте снова.")
+    }
 }
+kotlinc src/Main.kt -include-runtime -d app.jar
+java -jar app.jar
+
